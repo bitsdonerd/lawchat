@@ -13,14 +13,13 @@ from langchain_openai.chat_models import ChatOpenAI
 from dotenv import load_dotenv, find_dotenv
 
 from configs import *
-# Carrega as variáveis de ambiente
-load_dotenv(find_dotenv())
+
 
 # Obtém a chave da API da OpenAI
-OPENAI_API_KEY= os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY= st.secrets["OPENAI_API_KEY"]
 
 # Inicializa o cliente OpenAI
-client = ChatOpenAI(api_key=OPENAI_API_KEY)
+client = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
 
 
 PASTA_ARQUIVOS = Path(__file__).parent / 'arquivos'
