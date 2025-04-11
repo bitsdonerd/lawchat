@@ -15,11 +15,17 @@ from dotenv import load_dotenv, find_dotenv
 from configs import *
 
 
-# Obtém a chave da API da OpenAI
-OPENAI_API_KEY= st.secrets["OPENAI_API_KEY"]
+OPENAI_API_KEY = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
 
-# Inicializa o cliente OpenAI
-client = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
+if not OPENAI_API_KEY:
+    raise ValueError("OPENAI_API_KEY não encontrada.")
+
+# Inicializa o client corretamente
+client = ChatOpenAI(
+    openai_api_key=OPENAI_API_KEY,
+    model_name="gpt-4o-mini",
+    temperature=0.3
+)
 
 
 PASTA_ARQUIVOS = Path(__file__).parent / 'arquivos'
