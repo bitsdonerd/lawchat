@@ -19,13 +19,28 @@ Human: {question}
 AI: '''
 
 def get_config(config_name):
-    if config_name.lower() in st.session_state:
-        return st.session_state[config_name.lower()]
-    elif config_name.lower() == 'model_name':
+    """
+    Retorna o valor de uma configuração.
+
+    Args:
+        config_name (str): O nome da configuração a ser recuperada.
+
+    Returns:
+        any: O valor da configuração.
+
+    Raises:
+        ValueError: Se a configuração não for encontrada.
+    """
+    config_name = config_name.lower()
+    if config_name in st.session_state:
+        return st.session_state[config_name]
+    elif config_name == 'model_name':
         return MODEL_NAME
-    elif config_name.lower() == 'retrieval_search_type':
+    elif config_name == 'retrieval_search_type':
         return RETRIEVAL_SEARCH_TYPE
-    elif config_name.lower() == 'retrieval_kwargs':
+    elif config_name == 'retrieval_kwargs':
         return RETRIEVAL_KWARGS
-    elif config_name.lower() == 'prompt':
+    elif config_name == 'prompt':
         return PROMPT
+    else:
+        raise ValueError(f"Configuração '{config_name}' não encontrada.")
