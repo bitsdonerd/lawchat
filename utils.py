@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 import streamlit as st
-
+import openai
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
@@ -12,9 +12,9 @@ from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 
-from configs import get_config  # Certifique-se que configs.py retorna configs corretos
+from configs import get_config 
 
-# Caminho da pasta onde os PDFs são armazenados
+
 PASTA_ARQUIVOS = Path(__file__).parent / 'arquivos'
 
 
@@ -42,13 +42,14 @@ def split_de_documentos(documentos):
 
 
 def cria_vector_store(documentos):
-    # Define a variável de ambiente exigida pela nova versão
+   
     os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
-    # Criação do embedding model usando a API nova
+
     embedding_model = OpenAIEmbeddings(
-        model="text-embedding-3-large"  # Use o modelo mais atual
+        model="text-embedding-3-large",
     )
+    
 
     vector_store = FAISS.from_documents(
         documents=documentos,
