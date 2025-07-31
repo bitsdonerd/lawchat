@@ -2,13 +2,15 @@ import time
 import streamlit as st
 from utils import cria_chain_conversa, PASTA_ARQUIVOS
 
-
 def sidebar():
     uploaded_pdfs = st.file_uploader(
         'Adicione seus arquivos pdf', 
         type=['.pdf'], 
         accept_multiple_files=True
         )
+    
+    PASTA_ARQUIVOS.mkdir(parents=True, exist_ok=True)
+
     if not uploaded_pdfs is None:
         for arquivo in PASTA_ARQUIVOS.glob('*.pdf'):
             arquivo.unlink()

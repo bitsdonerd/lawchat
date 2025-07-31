@@ -4,6 +4,8 @@ Este projeto é um **chatbot inteligente com RAG (Retrieval-Augmented Generation
 
 Construído com **LangChain**, **OpenAI GPT-4o-mini**, e interface amigável em **Streamlit**.
 
+* Acesse em: https://lawchatbotpdf.streamlit.app/
+
 ---
 
 ## 🚀 Funcionalidades
