@@ -1,6 +1,5 @@
 import streamlit as st
 from langchain.prompts import PromptTemplate
-
 from configs import get_config
 
 def debug_page():

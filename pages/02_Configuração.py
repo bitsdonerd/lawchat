@@ -1,7 +1,5 @@
 import json
-
 import streamlit as st
-
 from configs import get_config
 from utils import PASTA_ARQUIVOS, cria_chain_conversa
 
