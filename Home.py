@@ -1,7 +1,5 @@
 import time
-
 import streamlit as st
-
 from utils import cria_chain_conversa, PASTA_ARQUIVOS
 
 

@@ -59,22 +59,17 @@ def cria_vector_store(documentos):
 
 
 def cria_chain_conversa():
-    # Verifica se a chave da API foi definida
     OPENAI_API_KEY = st.secrets.get("OPENAI_API_KEY")
     if not OPENAI_API_KEY:
         raise ValueError("OPENAI_API_KEY não encontrada.")
 
-    # Garante que a variável de ambiente esteja setada
     os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
-
-    # Etapas da pipeline
     documentos = importacao_documentos()
     documentos = split_de_documentos(documentos)
     vector_store = cria_vector_store(documentos)
 
-    # Instancia o modelo de chat
     chat = ChatOpenAI(
-        model=get_config('model_name'),  # Ex: "gpt-4", "gpt-3.5-turbo"
+        model=get_config('model_name'),  
         temperature=0.3
     )
 
